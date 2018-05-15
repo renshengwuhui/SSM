@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssmtest.ssmtest1.dao.IUserDao">
+  <resultMap id="BaseResultMap" type="ssmtest.ssmtest1.bo.User">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="PasswordHash" jdbcType="VARCHAR" property="passwordhash" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="EmailConfirmed" jdbcType="BIT" property="emailconfirmed" />
+    <result column="Hometown" jdbcType="VARCHAR" property="hometown" />
+    <result column="HomeTel" jdbcType="VARCHAR" property="hometel" />
+    <result column="HomePhone" jdbcType="VARCHAR" property="homephone" />
+    <result column="HomeAddress" jdbcType="VARCHAR" property="homeaddress" />
+    <result column="OfficePhone" jdbcType="VARCHAR" property="officephone" />
+    <result column="OfficeTel1" jdbcType="VARCHAR" property="officetel1" />
+    <result column="OfficeTel2" jdbcType="VARCHAR" property="officetel2" />
+    <result column="OfficeAddress" jdbcType="VARCHAR" property="officeaddress" />
+    <result column="LockoutEndDateUtc" jdbcType="TIMESTAMP" property="lockoutenddateutc" />
+    <result column="AccessFailedCount" jdbcType="INTEGER" property="accessfailedcount" />
+    <result column="LockoutEnabled" jdbcType="BIT" property="lockoutenabled" />
+    <result column="TwoFactorEnabled" jdbcType="BIT" property="twofactorenabled" />
+    <result column="Code" jdbcType="VARCHAR" property="code" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="CreateBy" jdbcType="INTEGER" property="createby" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LastUpdateBy" jdbcType="INTEGER" property="lastupdateby" />
+    <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, UserName, Password, PasswordHash, Email, EmailConfirmed, Hometown, HomeTel, HomePhone, 
+    HomeAddress, OfficePhone, OfficeTel1, OfficeTel2, OfficeAddress, LockoutEndDateUtc, 
+    AccessFailedCount, LockoutEnabled, TwoFactorEnabled, Code, Name, CreateBy, CreateTime, 
+    LastUpdateBy, LastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from User
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from User
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssmtest.ssmtest1.bo.User">
+    insert into User (Id, UserName, Password, 
+      PasswordHash, Email, EmailConfirmed, 
+      Hometown, HomeTel, HomePhone, 
+      HomeAddress, OfficePhone, OfficeTel1, 
+      OfficeTel2, OfficeAddress, LockoutEndDateUtc, 
+      AccessFailedCount, LockoutEnabled, TwoFactorEnabled, 
+      Code, Name, CreateBy, 
+      CreateTime, LastUpdateBy, LastUpdateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordhash,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{emailconfirmed,jdbcType=BIT}, 
+      #{hometown,jdbcType=VARCHAR}, #{hometel,jdbcType=VARCHAR}, #{homephone,jdbcType=VARCHAR}, 
+      #{homeaddress,jdbcType=VARCHAR}, #{officephone,jdbcType=VARCHAR}, #{officetel1,jdbcType=VARCHAR}, 
+      #{officetel2,jdbcType=VARCHAR}, #{officeaddress,jdbcType=VARCHAR}, #{lockoutenddateutc,jdbcType=TIMESTAMP}, 
+      #{accessfailedcount,jdbcType=INTEGER}, #{lockoutenabled,jdbcType=BIT}, #{twofactorenabled,jdbcType=BIT}, 
+      #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createby,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastupdateby,jdbcType=INTEGER}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ssmtest.ssmtest1.bo.User">
+    insert into User
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="passwordhash != null">
+        PasswordHash,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="emailconfirmed != null">
+        EmailConfirmed,
+      </if>
+      <if test="hometown != null">
+        Hometown,
+      </if>
+      <if test="hometel != null">
+        HomeTel,
+      </if>
+      <if test="homephone != null">
+        HomePhone,
+      </if>
+      <if test="homeaddress != null">
+        HomeAddress,
+      </if>
+      <if test="officephone != null">
+        OfficePhone,
+      </if>
+      <if test="officetel1 != null">
+        OfficeTel1,
+      </if>
+      <if test="officetel2 != null">
+        OfficeTel2,
+      </if>
+      <if test="officeaddress != null">
+        OfficeAddress,
+      </if>
+      <if test="lockoutenddateutc != null">
+        LockoutEndDateUtc,
+      </if>
+      <if test="accessfailedcount != null">
+        AccessFailedCount,
+      </if>
+      <if test="lockoutenabled != null">
+        LockoutEnabled,
+      </if>
+      <if test="twofactorenabled != null">
+        TwoFactorEnabled,
+      </if>
+      <if test="code != null">
+        Code,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="createby != null">
+        CreateBy,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="lastupdateby != null">
+        LastUpdateBy,
+      </if>
+      <if test="lastupdatetime != null">
+        LastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordhash != null">
+        #{passwordhash,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailconfirmed != null">
+        #{emailconfirmed,jdbcType=BIT},
+      </if>
+      <if test="hometown != null">
+        #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="hometel != null">
+        #{hometel,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null">
+        #{homephone,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null">
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel1 != null">
+        #{officetel1,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel2 != null">
+        #{officetel2,jdbcType=VARCHAR},
+      </if>
+      <if test="officeaddress != null">
+        #{officeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lockoutenddateutc != null">
+        #{lockoutenddateutc,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessfailedcount != null">
+        #{accessfailedcount,jdbcType=INTEGER},
+      </if>
+      <if test="lockoutenabled != null">
+        #{lockoutenabled,jdbcType=BIT},
+      </if>
+      <if test="twofactorenabled != null">
+        #{twofactorenabled,jdbcType=BIT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdateby != null">
+        #{lastupdateby,jdbcType=INTEGER},
+      </if>
+      <if test="lastupdatetime != null">
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssmtest.ssmtest1.bo.User">
+    update User
+    <set>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordhash != null">
+        PasswordHash = #{passwordhash,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailconfirmed != null">
+        EmailConfirmed = #{emailconfirmed,jdbcType=BIT},
+      </if>
+      <if test="hometown != null">
+        Hometown = #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="hometel != null">
+        HomeTel = #{hometel,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null">
+        HomePhone = #{homephone,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null">
+        HomeAddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        OfficePhone = #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel1 != null">
+        OfficeTel1 = #{officetel1,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel2 != null">
+        OfficeTel2 = #{officetel2,jdbcType=VARCHAR},
+      </if>
+      <if test="officeaddress != null">
+        OfficeAddress = #{officeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lockoutenddateutc != null">
+        LockoutEndDateUtc = #{lockoutenddateutc,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessfailedcount != null">
+        AccessFailedCount = #{accessfailedcount,jdbcType=INTEGER},
+      </if>
+      <if test="lockoutenabled != null">
+        LockoutEnabled = #{lockoutenabled,jdbcType=BIT},
+      </if>
+      <if test="twofactorenabled != null">
+        TwoFactorEnabled = #{twofactorenabled,jdbcType=BIT},
+      </if>
+      <if test="code != null">
+        Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createby != null">
+        CreateBy = #{createby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdateby != null">
+        LastUpdateBy = #{lastupdateby,jdbcType=INTEGER},
+      </if>
+      <if test="lastupdatetime != null">
+        LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssmtest.ssmtest1.bo.User">
+    update User
+    set UserName = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      PasswordHash = #{passwordhash,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      EmailConfirmed = #{emailconfirmed,jdbcType=BIT},
+      Hometown = #{hometown,jdbcType=VARCHAR},
+      HomeTel = #{hometel,jdbcType=VARCHAR},
+      HomePhone = #{homephone,jdbcType=VARCHAR},
+      HomeAddress = #{homeaddress,jdbcType=VARCHAR},
+      OfficePhone = #{officephone,jdbcType=VARCHAR},
+      OfficeTel1 = #{officetel1,jdbcType=VARCHAR},
+      OfficeTel2 = #{officetel2,jdbcType=VARCHAR},
+      OfficeAddress = #{officeaddress,jdbcType=VARCHAR},
+      LockoutEndDateUtc = #{lockoutenddateutc,jdbcType=TIMESTAMP},
+      AccessFailedCount = #{accessfailedcount,jdbcType=INTEGER},
+      LockoutEnabled = #{lockoutenabled,jdbcType=BIT},
+      TwoFactorEnabled = #{twofactorenabled,jdbcType=BIT},
+      Code = #{code,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      CreateBy = #{createby,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      LastUpdateBy = #{lastupdateby,jdbcType=INTEGER},
+      LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
